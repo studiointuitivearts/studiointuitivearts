@@ -12,6 +12,8 @@ export interface Workshop {
   spots: number;
   description: string;
   category: 'Workshop' | 'Vrouwencirkel';
+  imageUrl?: string;
+  status: 'active' | 'archived';
 }
 
 export interface GalleryItem {

@@ -1,0 +1,31 @@
+{
+  "collections": {
+    "workshops": {
+      "id": "string",
+      "title": "string",
+      "date": "string",
+      "time": "string",
+      "price": "string",
+      "spots": "number",
+      "description": "string",
+      "category": "string",
+      "imageUrl": "string",
+      "status": "string",
+      "createdAt": "timestamp"
+    },
+    "gallery": {
+      "id": "string",
+      "title": "string",
+      "category": "string",
+      "imageUrl": "string",
+      "createdAt": "timestamp"
+    },
+    "testimonials": {
+      "id": "string",
+      "name": "string",
+      "text": "string",
+      "videoUrl": "string",
+      "createdAt": "timestamp"
+    }
+  }
+}

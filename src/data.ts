@@ -14,7 +14,8 @@ export const WORKSHOPS: Workshop[] = [
     price: '€45',
     spots: 8,
     category: 'Workshop',
-    description: 'Ontdek de magie van mono-printing op een gelli plate. We werken met lagen, texturen en kleuren.'
+    description: 'Ontdek de magie van mono-printing op een gelli plate. We werken met lagen, texturen en kleuren.',
+    status: 'active'
   },
   {
     id: '2',
@@ -24,7 +25,8 @@ export const WORKSHOPS: Workshop[] = [
     price: '€35',
     spots: 6,
     category: 'Workshop',
-    description: 'Creëer je eigen visuele dagboek. Een plek voor experiment en expressie zonder oordeel.'
+    description: 'Creëer je eigen visuele dagboek. Een plek voor experiment en expressie zonder oordeel.',
+    status: 'active'
   },
   {
     id: '3',
@@ -34,7 +36,8 @@ export const WORKSHOPS: Workshop[] = [
     price: '€25',
     spots: 10,
     category: 'Vrouwencirkel',
-    description: 'Een avond van verbinding, zachtheid en intuïtief delen in een veilige setting.'
+    description: 'Een avond van verbinding, zachtheid en intuïtief delen in een veilige setting.',
+    status: 'active'
   }
 ];
 
