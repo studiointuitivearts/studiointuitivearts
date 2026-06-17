@@ -12,7 +12,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { Workshop } from '../../types';
-import { Plus, Edit2, Trash2, Calendar, Clock, Euro, Users, Loader2 } from 'lucide-react';
+import { ICONS } from '../../assets/icons';
 
 export function WorkshopManager() {
   const [workshops, setWorkshops] = useState<Workshop[]>([]);
@@ -97,7 +97,7 @@ export function WorkshopManager() {
     }
   };
 
-  if (loading) return <div className="flex justify-center p-24"><Loader2 className="animate-spin text-brand-green" size={48} /></div>;
+  if (loading) return <div className="flex justify-center p-24"><ICONS.loader className="text-brand-green" size={48} /></div>;
 
   return (
     <div className="space-y-8">
@@ -110,7 +110,7 @@ export function WorkshopManager() {
           onClick={() => setShowForm(true)}
           className="flex items-center gap-2 bg-brand-green text-brand-cream px-6 py-3 rounded-full hover:bg-brand-green/90 transition-all font-medium"
         >
-          <Plus size={20} /> Nieuwe Workshop
+          <ICONS.plus size={20} /> Nieuwe Workshop
         </button>
       </div>
 
@@ -240,10 +240,10 @@ export function WorkshopManager() {
                 <div>
                     <h4 className="text-xl font-medium mb-2">{workshop.title}</h4>
                     <div className="flex flex-wrap gap-4 text-sm text-brand-dark/60">
-                        <span className="flex items-center gap-1"><Calendar size={14} /> {workshop.date}</span>
-                        <span className="flex items-center gap-1"><Clock size={14} /> {workshop.time}</span>
-                        <span className="flex items-center gap-1"><Euro size={14} /> {workshop.price}</span>
-                        <span className="flex items-center gap-1"><Users size={14} /> {workshop.spots} plekken</span>
+                        <span className="flex items-center gap-1"><ICONS.calendar size={14} /> {workshop.date}</span>
+                        <span className="flex items-center gap-1"><ICONS.clock size={14} /> {workshop.time}</span>
+                        <span className="flex items-center gap-1"><ICONS.euro size={14} /> {workshop.price}</span>
+                        <span className="flex items-center gap-1"><ICONS.users size={14} /> {workshop.spots} plekken</span>
                         <span className={`px-2 py-0.5 rounded-full text-xs ${workshop.category === 'Workshop' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'}`}>
                             {workshop.category}
                         </span>
@@ -256,14 +256,14 @@ export function WorkshopManager() {
                 className="p-3 bg-white rounded-xl hover:bg-brand-green hover:text-white transition-all text-brand-green shadow-sm"
                 title="Bewerken"
               >
-                <Edit2 size={18} />
+                <ICONS.edit size={18} />
               </button>
               <button 
                 onClick={() => handleDelete(workshop.id)}
                 className="p-3 bg-white rounded-xl hover:bg-red-500 hover:text-white transition-all text-red-500 shadow-sm"
                 title="Verwijderen"
               >
-                <Trash2 size={18} />
+                <ICONS.trash size={18} />
               </button>
             </div>
           </div>

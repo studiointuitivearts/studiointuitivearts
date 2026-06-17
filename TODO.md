@@ -3,20 +3,21 @@
 Dit document dient als houvast voor de verdere ontwikkeling van de applicatie voor Anne Hopman.
 
 ## Prioriteit 1: Dynamische Content & Beheer
-- [ ] **Firebase Setup**: Implementeren van Firestore voor dataopslag en Firebase Auth voor admin toegang.
-- [ ] **Admin Dashboard (`/admin`)**: Een beveiligde pagina waar Anne kan inloggen.
-- [ ] **Workshop Manager**: 
+- [x] **Firebase Setup**: Implementeren van Firestore voor dataopslag en Firebase Auth voor admin toegang.
+- [x] **Admin Dashboard (`/admin`)**: Een beveiligde pagina waar Anne kan inloggen.
+- [x] **Workshop Manager**: 
     - Nieuwe workshops toevoegen (titel, datum, prijs, afbeelding, beschrijving).
     - Bestaande workshops bewerken.
-    - Archiveren van verlopen workshops (automatisch of handmatig).
-- [ ] **Galerie Manager**: Mogelijkheid om nieuwe kunstwerken te uploaden naar de galerie.
+    - Archiveren van verlopen workshops (handmatig via status).
+- [x] **Galerie Manager**: Mogelijkheid om nieuwe kunstwerken te uploaden naar de galerie.
 
 ## Prioriteit 2: Agenda & Planning
 - [ ] **Agenda Module**: Een overzichtelijke kalender of lijstweergave van alle geplande activiteiten.
 - [ ] **Datum-validatie**: Workshops moeten automatisch naar het 'archief' verplaatst worden zodra de datum is verstreken.
-- [ ] **Aanmeldformulier**: Integratie van een formulier per workshop die direct een mail stuurt naar Anne.
+- [x] **Contactpagina**: Volledig geïmplementeerd met formulier en placeholders voor Buro Broccoli gegevens.
 
 ## Prioriteit 3: Visueel & UX
+- [x] **Over Anne pagina**: Volledig geïmplementeerd met persoonlijke bio en nieuwe foto.
 - [ ] **Image Optimization**: Automatische compressie van geüploade afbeeldingen.
 - [ ] **SEO Optimalisatie**: Specifieke meta-tags per pagina/workshop.
 - [ ] **Social Media Feed**: Eventuele integratie van een Instagram cursor/feed.
@@ -28,4 +29,4 @@ Dit document dient als houvast voor de verdere ontwikkeling van de applicatie vo
 
 ---
 
-*Laatst bijgewerkt: 16 juni 2026*
+*Laatst bijgewerkt: 17 juni 2026*

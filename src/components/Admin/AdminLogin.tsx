@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { auth } from '../../lib/firebase';
-import { LogIn, Loader2 } from 'lucide-react';
+import {signInWithEmailAndPassword, signOut} from 'firebase/auth';
+import {auth} from '../../lib/firebase';
+import {ICONS} from '../../assets/icons';
 
 export function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -28,7 +28,7 @@ export function AdminLogin() {
       <div className="w-full max-w-md bg-brand-cream rounded-3xl shadow-xl p-8 border border-brand-green/10">
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-brand-green/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <LogIn className="text-brand-green" size={32} />
+            <ICONS.login className="text-brand-green" size={32} />
           </div>
           <h2 className="text-3xl font-serif">Admin Login</h2>
           <p className="text-brand-dark/60 mt-2">Log in om de website te beheren</p>
@@ -70,7 +70,7 @@ export function AdminLogin() {
             disabled={loading}
             className="w-full bg-brand-green text-white py-4 rounded-xl font-medium hover:bg-brand-green/90 transition-all shadow-md disabled:opacity-50 flex items-center justify-center gap-2"
           >
-            {loading ? <Loader2 className="animate-spin" size={20} /> : 'Inloggen'}
+            {loading ? <ICONS.loader size={20} /> : 'Inloggen'}
           </button>
         </form>
       </div>

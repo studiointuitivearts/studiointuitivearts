@@ -11,7 +11,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { GalleryItem } from '../../types';
-import { Plus, Trash2, ImageIcon, Loader2, X } from 'lucide-react';
+import { ICONS } from '../../assets/icons';
 
 export function GalleryManager() {
   const [items, setItems] = useState<GalleryItem[]>([]);
@@ -57,7 +57,7 @@ export function GalleryManager() {
     }
   };
 
-  if (loading) return <div className="flex justify-center p-24"><Loader2 className="animate-spin text-brand-green" size={48} /></div>;
+  if (loading) return <div className="flex justify-center p-24"><ICONS.loader className="text-brand-green" size={48} /></div>;
 
   return (
     <div className="space-y-8">
@@ -70,7 +70,7 @@ export function GalleryManager() {
           onClick={() => setShowForm(true)}
           className="flex items-center gap-2 bg-brand-green text-brand-cream px-6 py-3 rounded-full hover:bg-brand-green/90 transition-all font-medium"
         >
-          <Plus size={20} /> Nieuw Kunstwerk
+          <ICONS.plus size={20} /> Nieuw Kunstwerk
         </button>
       </div>
 
@@ -78,7 +78,7 @@ export function GalleryManager() {
         <div className="bg-white p-8 rounded-3xl shadow-xl border border-brand-green/10">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-2xl">Kunstwerk toevoegen</h3>
-            <button onClick={() => setShowForm(false)} className="text-brand-dark/40 hover:text-brand-dark"><X size={24} /></button>
+            <button onClick={() => setShowForm(false)} className="text-brand-dark/40 hover:text-brand-dark"><ICONS.x size={24} /></button>
           </div>
           <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-8 items-start">
             <div className="space-y-6">
@@ -127,7 +127,7 @@ export function GalleryManager() {
                 <img src={formData.imageUrl} alt="Preview" className="w-full h-full object-cover" />
               ) : (
                 <div className="text-center text-brand-green/30">
-                  <ImageIcon size={64} className="mx-auto mb-4" />
+                  <ICONS.image size={64} className="mx-auto mb-4" />
                   <p className="font-serif italic">Preview weergave</p>
                 </div>
               )}
@@ -149,7 +149,7 @@ export function GalleryManager() {
                     onClick={() => handleDelete(item.id)}
                     className="absolute top-2 right-2 p-2 bg-white/90 text-red-500 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500 hover:text-white"
                 >
-                    <Trash2 size={16} />
+                    <ICONS.trash size={16} />
                 </button>
             </div>
             <div className="p-4">

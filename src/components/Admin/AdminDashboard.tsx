@@ -1,16 +1,7 @@
 import React, { useState } from 'react';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../lib/firebase';
-import { 
-  LogOut, 
-  LayoutDashboard, 
-  Calendar, 
-  Image as ImageIcon, 
-  Settings,
-  PlusCircle,
-  Archive,
-  ChevronRight
-} from 'lucide-react';
+import { ICONS } from '../../assets/icons';
 import { WorkshopManager } from './WorkshopManager';
 import { GalleryManager } from './GalleryManager';
 
@@ -20,9 +11,9 @@ export function AdminDashboard() {
   const handleLogout = () => signOut(auth);
 
   const menuItems = [
-    { id: 'overview', label: 'Overzicht', icon: LayoutDashboard },
-    { id: 'workshops', label: 'Workshops', icon: Calendar },
-    { id: 'gallery', label: 'Galerie', icon: ImageIcon },
+    { id: 'overview', label: 'Overzicht', icon: ICONS.layout_dashboard },
+    { id: 'workshops', label: 'Workshops', icon: ICONS.calendar },
+    { id: 'gallery', label: 'Galerie', icon: ICONS.image },
   ];
 
   return (
@@ -54,7 +45,7 @@ export function AdminDashboard() {
             onClick={handleLogout}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-red-600 hover:bg-red-50 transition-all"
           >
-            <LogOut size={20} />
+            <ICONS.logout size={20} />
             Uitloggen
           </button>
         </div>
@@ -75,12 +66,12 @@ export function AdminDashboard() {
                 className="bg-brand-cream p-8 rounded-3xl border border-brand-green/10 cursor-pointer hover:shadow-lg transition-all group"
               >
                 <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <Calendar className="text-blue-600" />
+                  <ICONS.calendar className="text-blue-600" />
                 </div>
                 <h3 className="text-xl mb-2">Workshops beheren</h3>
                 <p className="text-sm text-brand-dark/60 mb-6">Voeg nieuwe workshops toe, bewerk bestaande of bekijk het archief.</p>
                 <div className="flex items-center text-brand-green font-medium gap-2">
-                  Aan de slag <ChevronRight size={16} />
+                  Aan de slag <ICONS.chevron_right size={16} />
                 </div>
               </div>
 
@@ -89,12 +80,12 @@ export function AdminDashboard() {
                 className="bg-brand-cream p-8 rounded-3xl border border-brand-green/10 cursor-pointer hover:shadow-lg transition-all group"
               >
                 <div className="w-12 h-12 bg-purple-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <ImageIcon className="text-purple-600" />
+                  <ICONS.image className="text-purple-600" />
                 </div>
                 <h3 className="text-xl mb-2">Galerie beheren</h3>
                 <p className="text-sm text-brand-dark/60 mb-6">Upload nieuwe kunstwerken en organiseer je collectie.</p>
                 <div className="flex items-center text-brand-green font-medium gap-2">
-                  Aan de slag <ChevronRight size={16} />
+                  Aan de slag <ICONS.chevron_right size={16} />
                 </div>
               </div>
             </div>

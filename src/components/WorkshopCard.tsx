@@ -6,7 +6,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Workshop } from '../types';
-import { BulletPointIcon } from './icons/BulletPointIcon';
+import { ICONS } from '../assets/icons';
 
 export interface WorkshopCardProps {
   workshop: Workshop;
@@ -32,15 +32,15 @@ export function WorkshopCard({ workshop, onSelect }: WorkshopCardProps) {
         
         <div className="space-y-2 mb-6 text-sm text-brand-dark/60">
           <div className="flex items-center gap-2">
-            <BulletPointIcon size={14} className="text-brand-orange" />
+            <ICONS.bullet_point size={14} className="text-brand-orange" />
             <span>{workshop.date}</span>
           </div>
           <div className="flex items-center gap-2">
-            <BulletPointIcon size={14} className="text-brand-orange" />
+            <ICONS.bullet_point size={14} className="text-brand-orange" />
             <span>{workshop.time}</span>
           </div>
           <div className="flex items-center gap-2">
-            <BulletPointIcon size={14} className="text-brand-orange" />
+            <ICONS.bullet_point size={14} className="text-brand-orange" />
             <span>Max. {workshop.spots} deelnemers</span>
           </div>
         </div>

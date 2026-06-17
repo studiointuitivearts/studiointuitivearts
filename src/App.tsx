@@ -5,16 +5,18 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { WorkshopCard } from './components/WorkshopCard';
 import { AdminLogin } from './components/Admin/AdminLogin';
 import { AdminDashboard } from './components/Admin/AdminDashboard';
+import { Contact } from './components/Contact';
+import { About } from './components/About';
 import { auth } from './lib/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useWorkshops, useGallery, useTestimonials } from './hooks';
-import { Loader2 } from 'lucide-react';
+import { ICONS } from './assets/icons';
 
 function HomeContent() {
   const navigate = useNavigate();
@@ -38,11 +40,13 @@ function HomeContent() {
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="relative aspect-square rounded-3xl overflow-hidden bg-brand-green/20"
+          className="relative aspect-square rounded-3xl overflow-hidden shadow-xl"
         >
-          <div className="absolute inset-0 flex items-center justify-center text-brand-green/50 font-serif italic text-xl">
-            Foto van Anne Hopman
-          </div>
+          <img 
+            src="https://www.burobroccoli.nl/wp-content/uploads/2022/10/IMG-6805_Lang.jpg" 
+            alt="Anne Hopman" 
+            className="w-full h-full object-cover"
+          />
         </motion.div>
         
         <motion.div
@@ -51,14 +55,14 @@ function HomeContent() {
            viewport={{ once: true }}
         >
           <h2 className="text-4xl mb-6">Over Anne</h2>
-          <p className="text-lg text-brand-dark/80 mb-8 leading-relaxed">
-            Als kunstenaar en workshopleider help ik mensen om weer in contact te komen met hun eigen creatieve bron. Bij Intuitive Soul Arts draait het niet om het eindresultaat, maar om de weg ernaartoe: het proces van luisteren naar je intuïtie en dat vormgeven op papier of doek.
+          <p className="text-lg text-brand-dark/80 mb-8 leading-relaxed font-serif italic">
+            "Ik ben Anne Hopman, kunstenaar, intuïtief maker en onderzoeker van de wereld achter wat zichtbaar is. Al sinds mijn studie Autonome Beeldende Kunst word ik geïnspireerd door bewustzijn, natuur en de diepere verbinding tussen mens en universum."
           </p>
           <button 
             onClick={() => navigate('/about')}
-            className="text-brand-orange font-medium flex items-center gap-2 hover:gap-3 transition-all"
+            className="text-brand-orange font-medium flex items-center gap-2 hover:gap-3 transition-all underline decoration-brand-orange/20 underline-offset-8"
           >
-            Lees meer over mijn reis <span>&rarr;</span>
+            Mijn volledige verhaal <span>&rarr;</span>
           </button>
         </motion.div>
       </section>
@@ -80,7 +84,7 @@ function HomeContent() {
           </div>
           
           {wLoading ? (
-            <div className="flex justify-center py-12"><Loader2 className="animate-spin text-brand-green" /></div>
+            <div className="flex justify-center py-12"><ICONS.loader className="text-brand-green" /></div>
           ) : (
             <div className="grid md:grid-cols-3 gap-8 text-left">
               {featuredWorkshops.map((workshop) => (
@@ -98,7 +102,7 @@ function HomeContent() {
       <section className="max-w-6xl mx-auto px-6">
         <h2 className="text-4xl mb-12 text-center">Galerie</h2>
         {gLoading ? (
-          <div className="flex justify-center py-12"><Loader2 className="animate-spin text-brand-green" /></div>
+          <div className="flex justify-center py-12"><ICONS.loader className="text-brand-green" /></div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
             {featuredGallery.map((item, idx) => (
@@ -142,7 +146,7 @@ function HomeContent() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl mb-16 italic font-serif">Ervaringen van anderen</h2>
           {tLoading ? (
-            <div className="flex justify-center py-12"><Loader2 className="animate-spin text-brand-green" /></div>
+            <div className="flex justify-center py-12"><ICONS.loader className="text-brand-green" /></div>
           ) : (
             <div className="grid md:grid-cols-2 gap-12">
               {testimonials.map((t) => (
@@ -168,7 +172,7 @@ function HomeContent() {
 function AdminPage() {
   const [user, loading] = useAuthState(auth);
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center"><Loader2 className="animate-spin" /></div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center"><ICONS.loader /></div>;
 
   return user ? <AdminDashboard /> : <AdminLogin />;
 }
@@ -228,19 +232,21 @@ function AppLayout() {
   const currentPage = location.pathname === '/' ? 'home' : location.pathname.substring(1);
 
   return (
-    <div className="min-h-screen">
+    <div className="flex flex-col min-h-screen bg-brand-cream">
       {!isAdmin && <Header onNavigate={handleNavigate} currentPage={currentPage} />}
       
-      <main>
+      <main className="flex-grow">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<PageWrapper><HomeContent /></PageWrapper>} />
-            <Route path="/about" element={<PageWrapper><PlaceholderPage title="Over Anne" /></PageWrapper>} />
+            <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
             <Route path="/workshops" element={<PageWrapper><PlaceholderPage title="Workshops" /></PageWrapper>} />
             <Route path="/agenda" element={<PageWrapper><PlaceholderPage title="Agenda" /></PageWrapper>} />
             <Route path="/gallery" element={<PageWrapper><PlaceholderPage title="Galerie" /></PageWrapper>} />
-            <Route path="/contact" element={<PageWrapper><PlaceholderPage title="Contact" /></PageWrapper>} />
+            <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
             <Route path="/admin" element={<PageWrapper><AdminPage /></PageWrapper>} />
+            {/* Catch-all route to redirect to home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </AnimatePresence>
       </main>
@@ -267,11 +273,20 @@ function AppLayout() {
               <h4 className="text-brand-cream font-medium mb-6">Contact</h4>
               <p className="text-sm mb-4">E-mail: info@intuitivesoularts.nl</p>
               <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full border border-brand-cream/20 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange transition-all cursor-pointer">
-                  In
-                </div>
-                <div className="w-10 h-10 rounded-full border border-brand-cream/20 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange transition-all cursor-pointer">
-                  Ig
+                <a 
+                  href="https://www.instagram.com/intuitivesoulcrafts" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="w-10 h-10 rounded-full border border-brand-cream/20 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange transition-all cursor-pointer"
+                  title="Instagram"
+                >
+                  <ICONS.instagram size={20} />
+                </a>
+                <div 
+                  className="w-10 h-10 rounded-full border border-brand-cream/20 flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange transition-all cursor-pointer opacity-50"
+                  title="LinkedIn (Binnenkort)"
+                >
+                  <ICONS.linkedin size={20} />
                 </div>
               </div>
             </div>

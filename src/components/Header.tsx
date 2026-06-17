@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X } from 'lucide-react';
+import { ICONS } from '../assets/icons';
 
 interface HeaderProps {
   onNavigate: (page: string) => void;
@@ -67,7 +67,7 @@ export function Header({ onNavigate, currentPage }: HeaderProps) {
           className="md:hidden text-brand-dark p-2"
           aria-label="Menu openen"
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? <ICONS.x size={24} /> : <ICONS.menu size={24} />}
         </button>
       </div>
 
